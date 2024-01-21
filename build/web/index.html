@@ -65,7 +65,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 1); /* Changed background to black */
+      background: rgba(0, 0, 0, 0.8); /* Changed background to semi-transparent */
       z-index: 1000;
       color: white; /* Set text color to white */
     }
@@ -90,10 +90,10 @@
 <body style="background-color: #111111;">
 
   <!-- Overlay for Terms and Conditions -->
-  <div id="termsOverlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); color: white; z-index: 999;">
+  <div id="overlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <h1>Terms and conditions</h1>
-    <p>This AI agent serves as a non-customised virtual assistant for demonstration purposes only. While accuracy is desired, its responses are generated with the OpenAI API and may not always reflect real-world facts. By using this service, you acknowledge that the AI agent's responses are provided 'as is', and user discretion is advised.</p>
-    <button onclick="acceptTerms()">I Accept</button>
+    <p id="overlayText">This AI agent serves as a non-customised virtual assistant for demonstration purposes only. While accuracy is desired, its responses are generated with the OpenAI API and may not always reflect real-world facts. By using this service, you acknowledge that the AI agent's responses are provided 'as is', and user discretion is advised.</p>
+    <button id="acceptButton" onclick="acceptAndNavigate()">I Accept</button>
   </div>
 
   <script>
