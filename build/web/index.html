@@ -48,7 +48,7 @@
   <link rel="manifest" href="manifest.json">
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "2584360735";
+    var serviceWorkerVersion = null;
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
@@ -56,36 +56,30 @@
 <body style="background-color: #111111;">
   
   
-  <div id="termsOverlay" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); color: white; z-index: 999;">
-    <h1>Terms and Conditions</h1>
-    <p>Your terms and conditions content goes here...</p>
-    <button onclick="acceptTerms()">I Accept</button>
-  </div>
+  
   
   
   <script>
-    function acceptTerms() {
-      document.getElementById("termsOverlay").style.display = "none";
-      window.addEventListener('load', function (ev) {
-        // Download main.dart.js
-        _flutter.loader.loadEntrypoint({
-          entrypointUrl: 'main.dart.js',
-          serviceWorker: {
-            serviceWorkerUrl: 'flutter_service_worker.js?v=',
-            serviceWorkerVersion: serviceWorkerVersion,
-          },
-          onEntrypointLoaded: async function(engineInitializer) {
-            // Initialize the Flutter engine
-            let appRunner = await engineInitializer.initializeEngine({});
-            // Run the app
-            await appRunner.runApp();
-          }
-        });
+    window.addEventListener('load', function (ev) {
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        entrypointUrl: 'main.dart.js',
+        serviceWorker: {
+          serviceWorkerUrl: 'flutter_service_worker.js?v=',
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: async function(engineInitializer) {
+          // Initialize the Flutter engine
+          let appRunner = await engineInitializer.initializeEngine({});
+          // Run the app
+          await appRunner.runApp();
+        }
       });
-    };
-      const serviceWorkerActivation = navigator.serviceWorker.register(
+    });
+    // load serviceworker earlier
+    const serviceWorkerActivation = navigator.serviceWorker.register(
       "flutter_service_worker.js?v=" + serviceWorkerVersion
-      );
+    );
   </script>
 </body>
 </html>
